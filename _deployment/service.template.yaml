@@ -1,0 +1,20 @@
+######
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${TRAVIS_REPO_SLUG}
+  namespace: default
+  labels:
+    app: ${TRAVIS_REPO_SLUG}
+    topic: default
+    language: nodejs
+spec:
+  ports:
+  - name: api-svc
+    port: ${APP_PORT}
+    targetPort: api-pod
+    protocol: TCP
+  selector:
+    app: ${TRAVIS_REPO_SLUG}
+    topic: default
+    language: nodejs

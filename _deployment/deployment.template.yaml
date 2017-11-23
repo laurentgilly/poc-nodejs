@@ -1,0 +1,56 @@
+######
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: ${TRAVIS_REPO_SLUG}
+  namespace: default
+  labels:
+    app: ${TRAVIS_REPO_SLUG}
+    topic: default
+    language: nodejs
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: ${TRAVIS_REPO_SLUG}
+        topic: default
+        language: nodejs
+    spec:
+      imagePullSecrets:
+      - name: dockerhub
+      containers:
+      - name: ${TRAVIS_REPO_SLUG}
+        image: ${TRAVIS_REPO_SLUG}:${TRAVIS_COMMIT}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: api-pod
+          containerPort: ${APP_PORT}
+        livenessProbe:
+          httpGet:
+            path: /nodejs-api/healthz
+            port: ${APP_PORT}
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          failureThreshold: 3
+          successThreshold: 1
+          timeoutSeconds: 1
+        readinessProbe:
+          httpGet:
+            path: /nodejs-api/healthz
+            port: ${APP_PORT}
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          failureThreshold: 3
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources: # https://kubernetes.io/docs/admin/resourcequota/
+            limits: 
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 1m
+              memory: 10Mi
+        env: # simple example how to add env vars
+        - name: PORT
+          value: "${APP_PORT}"

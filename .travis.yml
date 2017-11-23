@@ -1,0 +1,39 @@
+language: node_js
+node_js: 8
+sudo: required
+services: docker
+branches:
+  only:
+    - master
+install: 
+  - make install
+before_script:
+  - make unit-tests
+script:
+  # docker build & push
+  - make build
+  ###### KUBERNETES
+  # Download the necessary tools to deploy to kubernetes
+  # kubectl
+  - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+  - chmod +x ./kubectl
+  # bash-template
+  - curl -LO https://raw.githubusercontent.com/laurentgilly/iTools/master/scripts/bash-template.sh
+  - chmod +x ./bash-template.sh
+  # Configure kubectl
+  # - ./kubectl config set-cluster nodejsCluster --server=${K8S_HOST} --insecure-skip-tls-verify
+  # - ./kubectl config set-credentials ${K8S_USERNAME} --token=${K8S_TOKEN}
+  # - ./kubectl config set-context nodejsContext --cluster=nodejsCluster --user=${K8S_USERNAME}
+  # - ./kubectl config use-context nodejsContext
+  # Update deployment files
+  # - ./bash-template.sh _deployment/service.template.yaml > _deployment/service.yaml
+  # - ./bash-template.sh _deployment/deployment.template.yaml > _deployment/deployment.yaml
+  # - ./bash-template.sh _deployment/ingress.template.yaml > _deployment/ingress.yaml
+  # Apply deployment
+  # - ./kubectl apply -f _deployment/service.yaml
+  # - ./kubectl apply -f _deployment/deployment.yaml
+  # - ./kubectl apply -f _deployment/ingress.yaml
+  ############
+cache:
+  directories:
+    - "node_modules"

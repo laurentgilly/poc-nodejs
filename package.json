@@ -1,0 +1,28 @@
+{
+  "name": "poc-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha 'tests'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laurentgilly/poc-nodejs.git"
+  },
+  "author": "laurentgilly",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/laurentgilly/poc-nodejs/issues"
+  },
+  "homepage": "https://github.com/laurentgilly/poc-nodejs#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "request": "^2.79.0"
+  }
+}

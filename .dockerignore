@@ -1,0 +1,7 @@
+node_module
+tests
+.gitignore
+.travis.yml
+LICENSE
+Makefile
+package-lock.json
