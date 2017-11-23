@@ -1,4 +1,4 @@
-# poc-nodejs
+# poc-nodejs [![Build Status](https://travis-ci.org/laurentgilly/poc-nodejs.svg?branch=master)](https://travis-ci.org/laurentgilly/poc-nodejs)
 *Proof of concept - Build with TravisCi, push to DockerHub and deploy to K8S*
 
 `poc-nodejs` is a cool and nice **hello world project** that will help you setup your pipeline CI/CD. The final goal 
