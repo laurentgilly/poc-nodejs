@@ -47,7 +47,7 @@ kubectl create secret docker-registry dockerhub --docker-server=https://index.do
 ### Kube-Lego [(documentation)](https://github.com/jetstack/kube-lego) (optional)
 Https is great, but it's also awesome when it's free. Kube-lego and Let's Encrypt are there for you.
 ```
-kubectl apply -f _platform/kube-lego.yaml -n my-namespace
+kubectl apply -f _platform/kube-lego.yaml -n kube-system
 ```
 *don't forget to change email contact inside kube-lego.yaml*
 The only thing you need to do is uncomment __tls__ part inside ingress.template.yaml and make it correspond to your needs. More than one micro-service could use the same secret within the same namespace.
