@@ -2,10 +2,10 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: ${TRAVIS_REPO_SLUG}
+  name: poc-nodejs
   namespace: default
   labels:
-    app: ${TRAVIS_REPO_SLUG}
+    app: poc-nodejs
     topic: default
     language: nodejs
 spec:
@@ -13,14 +13,14 @@ spec:
   template:
     metadata:
       labels:
-        app: ${TRAVIS_REPO_SLUG}
+        app: poc-nodejs
         topic: default
         language: nodejs
     spec:
       imagePullSecrets:
       - name: dockerhub
       containers:
-      - name: ${TRAVIS_REPO_SLUG}
+      - name: poc-nodejs
         image: ${TRAVIS_REPO_SLUG}:${TRAVIS_COMMIT}
         imagePullPolicy: IfNotPresent
         ports:
