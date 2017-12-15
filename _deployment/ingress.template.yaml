@@ -3,10 +3,10 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: poc-nodejs-ing
-  namespace: default
+  namespace: my-namespace
   labels:
     app: poc-nodejs
-    topic: default
+    topic: my-namespace
     language: nodejs
   annotations:
     kubernetes.io/tls-acme: "true"

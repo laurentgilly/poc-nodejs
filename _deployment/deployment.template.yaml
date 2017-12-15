@@ -3,10 +3,10 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: poc-nodejs
-  namespace: default
+  namespace: my-namespace
   labels:
     app: poc-nodejs
-    topic: default
+    topic: my-namespace
     language: nodejs
 spec:
   replicas: 2
@@ -14,7 +14,7 @@ spec:
     metadata:
       labels:
         app: poc-nodejs
-        topic: default
+        topic: my-namespace
         language: nodejs
     spec:
       imagePullSecrets:
